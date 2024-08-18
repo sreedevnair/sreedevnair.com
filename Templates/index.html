@@ -122,6 +122,8 @@
 
       <div class="main_content">
         <div class="main_content_inner">
+
+          <!------------- Home Page Content ----------------->
           <div id="home" class="tramp_tm_section animated">
             <div class="container">
               <div class="tramp_tm_home">
@@ -147,7 +149,9 @@
               </div>
             </div>
           </div>
+          <!------------- Home Page Content End ----------------->
 
+          <!------------- About Me Content ----------------->
           <div id="about" class="tramp_tm_section">
             <div class="container">
               <div class="tramp_tm_about">
@@ -426,89 +430,33 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="tramp_tm_timeline">
                   <div class="tramp_tm_title">
                     <h3><span>Working Experience</span></h3>
                   </div>
                   <div class="list">
                     <ul>
+
+                      {% for exp in workexp %}
                       <li>
                         <div class="list_inner">
                           <div class="occ">
-                            <h3>Theme Reviewer at Envato Marketplace</h3>
+                            <h3>{{exp.title}}</h3>
                           </div>
                           <div class="text">
-                            <p>
-                              Whether it’s a personal blog, an e-commerce store,
-                              or a complex web application, I thrive on turning
-                              ideas into reality and delivering exceptional
-                              digital experiences.
-                            </p>
+                            <p>{{exp.description}}</p>
                           </div>
                           <div class="date">
-                            <span>2020 - Current</span>
+                            <span>{{exp.duration | safe}}</span>
                           </div>
                         </div>
                       </li>
-                      <li>
-                        <div class="list_inner">
-                          <div class="occ">
-                            <h3>Graphic Designer at Colorlib Corporation</h3>
-                          </div>
-                          <div class="text">
-                            <p>
-                              Whether it’s a personal blog, an e-commerce store,
-                              or a complex web application, I thrive on turning
-                              ideas into reality and delivering exceptional
-                              digital experiences.
-                            </p>
-                          </div>
-                          <div class="date">
-                            <span>2018 - 2020</span>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="list_inner">
-                          <div class="occ">
-                            <h3>Support Manager at Coddy Web Studio</h3>
-                          </div>
-                          <div class="text">
-                            <p>
-                              Whether it’s a personal blog, an e-commerce store,
-                              or a complex web application, I thrive on turning
-                              ideas into reality and delivering exceptional
-                              digital experiences.
-                            </p>
-                          </div>
-                          <div class="date">
-                            <span>2016 - 2018</span>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="list_inner">
-                          <div class="occ">
-                            <h3>
-                              Senior Designer at Vivaco Applications Group
-                            </h3>
-                          </div>
-                          <div class="text">
-                            <p>
-                              Whether it’s a personal blog, an e-commerce store,
-                              or a complex web application, I thrive on turning
-                              ideas into reality and delivering exceptional
-                              digital experiences.
-                            </p>
-                          </div>
-                          <div class="date">
-                            <span>2014 - 2016</span>
-                          </div>
-                        </div>
-                      </li>
+                      {% endfor %}
                     </ul>
                   </div>
                 </div>
+
                 <div class="tramp_tm_partners">
                   <div class="tramp_tm_title">
                     <h3><span>Trusted Partners</span></h3>
@@ -667,7 +615,9 @@
               </div>
             </div>
           </div>
+          <!------------- About Me Content End ----------------->
 
+          <!------------- Porfolio Content ----------------->
           <div id="portfolio" class="tramp_tm_section">
             <div class="container">
               <div class="tramp_tm_portfolio">
@@ -1153,7 +1103,9 @@
               </div>
             </div>
           </div>
+          <!------------- Porfolio Content End ----------------->
 
+          <!------------- News Content ----------------->
           <div id="news" class="tramp_tm_section">
             <div class="container">
               <div class="tramp_tm_news">
@@ -1611,7 +1563,9 @@
               </div>
             </div>
           </div>
+          <!------------- News Content End ----------------->
 
+          <!------------- Contact Section ----------------->
           <div id="contact" class="tramp_tm_section">
             <div class="container">
               <div class="tramp_tm_contact">
@@ -1795,6 +1749,7 @@
               </div>
             </div>
           </div>
+          <!------------- Contact Section End ----------------->
         </div>
       </div>
 
@@ -1837,13 +1792,8 @@
       src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"
     ></script>
     <script src="{% static 'js/jquery.js' %}"></script>
-    <!--[if lt IE 10]>
-      <script type="text/javascript" src="{% static 'js/ie8.js' %}"></script>
-    <![endif]-->
     <script src="{% static 'js/plugins.js' %}"></script>
     <script src="{% static 'js/contact.form.js' %}"></script>
     <script src="{% static 'js/init.js' %}"></script>
   </body>
-
-  <!-- Mirrored from marketifythemes.net/html/tramp/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 11 Aug 2024 19:30:37 GMT -->
 </html>

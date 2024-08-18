@@ -13,3 +13,13 @@ class WebsiteDetail(models.Model):
 
     def __str__(self):
         return self.linked_by
+    
+
+class WorkExperience(models.Model):
+
+    title = models.CharField(max_length=125)
+    description = models.TextField()
+    duration = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.title
