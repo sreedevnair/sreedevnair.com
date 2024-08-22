@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import WebsiteDetail, WorkExperience
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 
@@ -7,5 +9,24 @@ def index(request):
 
     website = WebsiteDetail.objects.get(linked_by="Website Details")
     workexp = WorkExperience.objects.all()
+
+    if request.method == 'POST':
+        name = request.POST.get('contact_name', '')
+        email = request.POST.get('contact_email', '')
+        message = request.POST.get('contact_message', '')
+        from_email = settings.EMAIL_HOST_USER
+        
+        # Compose email subject and body
+        subject = f'An Email From {name}'
+        email_body = f"Name: {name}\nEmail: {email}\nMessage: {message}"
+        
+        try:
+            send_mail(subject, email_body, from_email, ["contact@sreedevnair.com", "sreedevnair02@gmail.com"])
+            success_message = 'Your message has been sent successfully. I will get back to you soon :)'
+            return render(request, 'index.html', {"website":website, "success_msg":success_message, 'workexp':workexp})
+        
+        except Exception as e:
+            error_message = f'An error occurred while sending the email: {str(e)}'
+            return render(request, 'index.html', {"website":website, "error_msg":error_message, 'workexp':workexp})
 
     return render(request, 'index.html', {'website':website, 'workexp':workexp})

@@ -62,13 +62,15 @@
           </div>
         </div>
       </div>
+
+      <!-- Mobile Navbar -->
       <div class="tramp_tm_mobile_menu">
         <div class="menu_list">
           <ul class="transition_link">
             <li class="active"><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#news">News</a></li>
+            <li><a href="#news">Academics</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
@@ -102,6 +104,7 @@
         </div>
       </div>
 
+      <!-- Desktop Navbar -->
       <div class="tramp_tm_header">
         <div class="logo transition_link" data-type="image">
           <a href="#home">
@@ -114,7 +117,7 @@
             <li class="active"><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#news">News</a></li>
+            <li><a href="#news">Academics</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
@@ -149,7 +152,6 @@
               </div>
             </div>
           </div>
-          <!------------- Home Page Content End ----------------->
 
           <!------------- About Me Content ----------------->
           <div id="about" class="tramp_tm_section">
@@ -615,7 +617,6 @@
               </div>
             </div>
           </div>
-          <!------------- About Me Content End ----------------->
 
           <!------------- Porfolio Content ----------------->
           <div id="portfolio" class="tramp_tm_section">
@@ -1103,7 +1104,6 @@
               </div>
             </div>
           </div>
-          <!------------- Porfolio Content End ----------------->
 
           <!------------- News Content ----------------->
           <div id="news" class="tramp_tm_section">
@@ -1563,7 +1563,6 @@
               </div>
             </div>
           </div>
-          <!------------- News Content End ----------------->
 
           <!------------- Contact Section ----------------->
           <div id="contact" class="tramp_tm_section">
@@ -1572,20 +1571,22 @@
                 <div class="tramp_tm_title">
                   <h3><span>Get in Touch</span></h3>
                 </div>
+
+                <!-- Adress Phone and Email ID-->
                 <div class="infolist">
                   <ul>
                     <li>
                       <div class="list_inner">
                         <span>Address</span>
-                        <span>Ave Street 177, New York, USA</span>
+                        <span>Navi Mumbai, India</span>
                       </div>
                     </li>
                     <li>
                       <div class="list_inner">
                         <span>Phone</span>
                         <span
-                          ><a class="line_effect" href="#"
-                            >+44 077 155 09 09</a
+                          ><a class="line_effect" href="tel:+918850612106"
+                            >+91 88506 12106</a
                           ></span
                         >
                       </div>
@@ -1593,123 +1594,70 @@
                     <li>
                       <div class="list_inner">
                         <span>Mail</span>
-                        <span
-                          ><a class="line_effect" href="#"
-                            ><span
-                              class="__cf_email__"
-                              data-cfemail="473335262a3707223f262a372b226924282a"
-                              >[email&#160;protected]</span
-                            ></a
-                          ></span
-                        >
+                        <span>
+                          <a class="line_effect" href="mailto:contact@sreedevnair.com">contact@sreedevnair.com</a>
+                        </span>
                       </div>
                     </li>
                   </ul>
                 </div>
 
+                <!-- Contact Form -->
                 <div class="form_wrapper">
-                  <form id="contactForm">
-                    <div class="error_box" id="empty-form">
-                      <p>Please Fill Required Fields</p>
-                    </div>
-                    <div class="error_box" id="subject-alert">
-                      <p>Please Select Subject</p>
-                    </div>
-                    <div class="error_box" id="security-alert">
-                      <p>Security code does not match !</p>
-                    </div>
-                    <div class="error_box" id="email-invalid">
-                      <p>
-                        Please enter a valid email address. Exp.
-                        <a
-                          href="https://marketifythemes.net/cdn-cgi/l/email-protection"
-                          class="__cf_email__"
-                          data-cfemail="6a0f120b071a060f2a0d070b030644090507"
-                          >[email&#160;protected]</a
-                        >
-                      </p>
-                    </div>
-                    <div class="error_box" id="phone-invalid">
-                      <p>
-                        Please enter a valid phone number.Exp. +998991774433
-                      </p>
-                    </div>
-                    <div class="error_box" id="error_mail">
-                      <p></p>
-                    </div>
-                    <div class="success_box" id="success_mail">
-                      <p>
-                        Your message has been sent. We will contact you as soon
-                        as possible.
-                      </p>
-                    </div>
+                  <form id="contactForm" action="{% url 'index' %}" method="post">
+                    {% csrf_token %}
+
+                    <!-- Input Fields -->
                     <ul>
                       <li>
                         <input
                           type="text"
                           placeholder="Name"
                           name="contact_name"
-                          class="cf-form-control"
+                          required
                         />
                         <span></span>
                       </li>
                       <li>
                         <input
-                          type="text"
+                          type="email"
                           placeholder="Email"
                           name="contact_email"
-                          class="cf-form-control"
+                          required
                         />
                         <span></span>
-                      </li>
-                      <li>
-                        <input
-                          type="text"
-                          placeholder="Phone"
-                          name="contact_phone"
-                          class="cf-form-control"
-                        />
-                        <span></span>
-                      </li>
-                      <li>
-                        <select name="contact_subject" class="cf-form-control">
-                          <option value="Choose Services">
-                            Choose Service
-                          </option>
-                          <option value="Web Development">
-                            Web Development
-                          </option>
-                          <option value="Mobile Application">
-                            Mobile Application
-                          </option>
-                          <option value="UI/UX Design">UI/UX Design</option>
-                        </select>
                       </li>
                       <li id="text-area-w">
                         <textarea
                           placeholder="Message"
                           name="contact_message"
-                          class="cf-form-control"
+                          required
                         ></textarea>
                       </li>
-                      <li id="enter_code">
-                        <span id="txtCaptchaSpan"></span>
-                        <input
-                          type="text"
-                          class="cf-form-control"
-                          name="contact_question"
-                          id="txtInput"
-                          autocomplete="off"
-                          placeholder="Please Enter Code *"
-                        />
-                        <input type="hidden" id="txtCaptcha" />
-                      </li>
                     </ul>
+                    
                     <div class="tramp_tm_button">
-                      <a id="send_message" class="tm_text_effect" href="#"
-                        >Send Message</a
-                      >
+                      <a id="send_message" class="tm_text_effect" href="#">Send Message</a>
                     </div>
+
+                    <script>
+                      document.addEventListener("DOMContentLoaded", function() {
+                          document.getElementById("send_message").addEventListener("click", function(event) {
+                              event.preventDefault(); // Prevent the default anchor behavior
+                              
+                              // Get the form element
+                              var form = document.getElementById("contactForm");
+                      
+                              // Check if the form is valid
+                              if (form.checkValidity()) {
+                                  form.submit(); // Submit the form if valid
+                              } else {
+                                  form.reportValidity(); // Trigger validation UI if invalid
+                              }
+                          });
+                      });
+                    </script>
+
                   </form>
                 </div>
 
@@ -1749,7 +1697,6 @@
               </div>
             </div>
           </div>
-          <!------------- Contact Section End ----------------->
         </div>
       </div>
 
@@ -1758,7 +1705,7 @@
 
       <div class="tramp_tm_footer">
         <div class="copyright">
-          <p>&copy; 2024 Tramp. All rights are reserved</p>
+          <p>&copy; 2024 SreedevNair</p>
         </div>
         <div class="social">
           <ul>
