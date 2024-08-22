@@ -1569,7 +1569,9 @@
             <div class="container">
               <div class="tramp_tm_contact">
                 <div class="tramp_tm_title">
-                  <h3><span>Get in Touch</span></h3>
+                  <h3>
+                    <span>Get in Touch</span>
+                  </h3>
                 </div>
 
                 <!-- Adress Phone and Email ID-->
@@ -1603,6 +1605,50 @@
                 </div>
 
                 <!-- Contact Form -->
+                {% if success_message %}
+                <span style="text-align: center;">
+                  <h2>{{success_message}}</h2>
+                </span>
+                <div class="my_map">
+                  <div class="mapouter">
+                    <div class="gmap_canvas">
+                      <iframe
+                        width="100%"
+                        height="392"
+                        id="gmap_canvas"
+                        src="https://maps.google.com/maps?q=Broadway,%20New%20York&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                        frameborder="0"
+                        scrolling="no"
+                        marginheight="0"
+                        marginwidth="0"
+                      ></iframe
+                      ><a href="https://123movies-i.net/"></a><br />
+                      <style>
+                        .mapouter {
+                          position: relative;
+                          text-align: right;
+                          height: 392px;
+                          width: 100%;
+                        }
+                      </style>
+                      <style>
+                        .gmap_canvas {
+                          overflow: hidden;
+                          background: none !important;
+                          height: 392px;
+                          width: 100%;
+                        }
+                      </style>
+                    </div>
+                  </div>
+                </div>
+
+                {% elif error_msg %}
+                <span style="text-align: center;">
+                  <h2>{{error_msg}}</h2>
+                </span>
+
+                {% else %}
                 <div class="form_wrapper">
                   <form id="contactForm" action="{% url 'index' %}" method="post">
                     {% csrf_token %}
@@ -1661,39 +1707,7 @@
                   </form>
                 </div>
 
-                <div class="my_map">
-                  <div class="mapouter">
-                    <div class="gmap_canvas">
-                      <iframe
-                        width="100%"
-                        height="392"
-                        id="gmap_canvas"
-                        src="https://maps.google.com/maps?q=Broadway,%20New%20York&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
-                        frameborder="0"
-                        scrolling="no"
-                        marginheight="0"
-                        marginwidth="0"
-                      ></iframe
-                      ><a href="https://123movies-i.net/"></a><br />
-                      <style>
-                        .mapouter {
-                          position: relative;
-                          text-align: right;
-                          height: 392px;
-                          width: 100%;
-                        }
-                      </style>
-                      <style>
-                        .gmap_canvas {
-                          overflow: hidden;
-                          background: none !important;
-                          height: 392px;
-                          width: 100%;
-                        }
-                      </style>
-                    </div>
-                  </div>
-                </div>
+                {% endif %}
               </div>
             </div>
           </div>
