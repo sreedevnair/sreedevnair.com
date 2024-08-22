@@ -23,10 +23,10 @@ def index(request):
         try:
             send_mail(subject, email_body, from_email, ["contact@sreedevnair.com", "sreedevnair02@gmail.com"])
             success_message = 'Your message has been sent successfully. I will get back to you soon :)'
-            return render(request, 'index.html', {"website":website, "success_msg":success_message, 'workexp':workexp})
+            return render(request, 'index.html', {"website":website, 'workexp':workexp, "success_msg":success_message})
         
         except Exception as e:
             error_message = f'An error occurred while sending the email: {str(e)}'
-            return render(request, 'index.html', {"website":website, "error_msg":error_message, 'workexp':workexp})
+            return render(request, 'index.html', {"website":website, 'workexp':workexp, "error_msg":error_message})
 
     return render(request, 'index.html', {'website':website, 'workexp':workexp})

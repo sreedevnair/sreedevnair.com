@@ -67,7 +67,7 @@
       <div class="tramp_tm_mobile_menu">
         <div class="menu_list">
           <ul class="transition_link">
-            <li class="active"><a href="#home">Home</a></li>
+            <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#news">Academics</a></li>
@@ -114,7 +114,7 @@
         </div>
         <div class="menu">
           <ul class="transition_link">
-            <li class="active"><a href="#home">Home</a></li>
+            <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#news">Academics</a></li>
@@ -1708,6 +1708,14 @@
                 </div>
 
                 {% endif %}
+              
+              <script>
+                  document.getElementById('contactForm').addEventListener('submit', function(e) {
+                      // Save the "Contact" section before the form is submitted
+                      localStorage.setItem('currentSection', 'contact');
+                  });
+              </script>
+              
               </div>
             </div>
           </div>
@@ -1756,5 +1764,42 @@
     <script src="{% static 'js/plugins.js' %}"></script>
     <script src="{% static 'js/contact.form.js' %}"></script>
     <script src="{% static 'js/init.js' %}"></script>
+    
+
+    <script>
+      // Function to show the desired section
+      function showSection(sectionId) {
+          // Hide all sections
+          document.querySelectorAll('.tramp_tm_section').forEach(section => {
+              section.classList.remove('animated');
+          });
+
+          // Show the selected section
+          const selectedSection = document.getElementById(sectionId);
+          if (selectedSection) {
+              selectedSection.classList.add('animated');
+          }
+      }
+
+      // Event listener for navigation links
+      document.querySelectorAll('.transition_link a').forEach(link => {
+          link.addEventListener('click', function(e) {
+              // Get the section ID from href (without the #)
+              const sectionId = this.getAttribute('href').substring(1);
+              
+              // Show the clicked section
+              showSection(sectionId);
+              
+              // Save the current section in localStorage
+              localStorage.setItem('currentSection', sectionId);
+          });
+      });
+
+      // On page load, check if a section is saved in localStorage
+      window.addEventListener('load', () => {
+          const currentSection = localStorage.getItem('currentSection') || 'home';
+          showSection(currentSection);
+      });
+  </script>
   </body>
 </html>
