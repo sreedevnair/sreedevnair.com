@@ -172,29 +172,29 @@ function tramp_tm_modalbox_news(){
 // -------------  MODALBOX PORTFOLIO  --------------
 // -------------------------------------------------
 
-function tramp_tm_modalbox_portfolio(){
-	
-	"use strict";
-	
-	var modalBox	= jQuery('.tramp_tm_modalbox');
-	var button		= jQuery('.tramp_tm_portfolio .portfolio_popup');
-	
-	button.on('click',function(){
-		var element 	= jQuery(this);
-		var parent		= element.closest('li');
-		var image		= parent.find('.abs_image .main').data('img-url');
-		var details 	= parent.find('.hidden_content_portfolio').html();
-		var title 		= parent.find('.details .title a').text();
-		var category 	= parent.find('.details .category').html();
-		
-		modalBox.addClass('opened');
-		modalBox.find('.description_wrap').html(details);
-		modalBox.find('.popup_details').prepend('<div class="top_image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
-		modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><h3>'+title+'</h3><span>'+category+'</span><div>');	
-		tramp_tm_data_images();
-		return false;
-	});
+function tramp_tm_modalbox_portfolio() {
+    "use strict";
+
+    var modalBox = jQuery('.tramp_tm_modalbox');
+    var button = jQuery('.tramp_tm_portfolio .portfolio_popup');
+
+    button.on('click', function() {
+        var element = jQuery(this);
+        var parent = element.closest('li');
+        var image = parent.find('.abs_image .main').data('img-url');
+        var details = parent.find('.hidden_content_portfolio').html();
+        var title = parent.find('.details .title a').text();
+        var category = parent.find('.details .category').html();
+        
+        modalBox.addClass('opened');
+        modalBox.find('.description_wrap').html(details);
+        modalBox.find('.popup_details').prepend('<div class="top_image"><img src="' + image + '" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
+        modalBox.find('.popup_details .top_image').after('<div class="portfolio_main_title"><h3>'+title+'</h3><span>'+category+'</span><div>');   
+        tramp_tm_data_images();
+        return false;
+    });
 }
+
 
 // -------------------------------------------------
 // -----------------    PORTFOLIO    ---------------
@@ -202,40 +202,53 @@ function tramp_tm_modalbox_portfolio(){
 
 // filterable 
 
-function tramp_tm_portfolio(){
+function tramp_tm_portfolio() {
+    "use strict";
 
-	"use strict";
+    if (jQuery().isotope) {
+        // Needed variables
+        var list = jQuery('.tramp_tm_portfolio .portfolio_item');
+        var filter = jQuery('.tramp_tm_portfolio .portfolio_filter ul');
 
-	if(jQuery().isotope) {
+        if (filter.length) {
+            // Find the current filter link
+            var currentFilter = filter.find('a.current').attr('data-filter') || '*';
 
-		// Needed variables
-		var list 		 = jQuery('.tramp_tm_portfolio .portfolio_item');
-		var filter		 = jQuery('.tramp_tm_portfolio .portfolio_filter ul');
+            // Initialize Isotope with the default filter
+            list.isotope({
+                filter: currentFilter,
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false
+                }
+            });
 
-		if(filter.length){
-			// Isotope Filter 
-			filter.find('a').on('click', function(){
-				var selector = jQuery(this).attr('data-filter');
-				list.isotope({ 
-					filter				: selector,
-					animationOptions	: {
-						duration			: 750,
-						easing				: 'linear',
-						queue				: false
-					}
-				});
-				return false;
-			});	
+            // Isotope Filter
+            filter.find('a').on('click', function () {
+                var selector = jQuery(this).attr('data-filter');
+                list.isotope({
+                    filter: selector,
+                    animationOptions: {
+                        duration: 750,
+                        easing: 'linear',
+                        queue: false
+                    }
+                });
+                return false;
+            });
 
-			// Change active element class
-			filter.find('a').on('click', function() {
-				filter.find('a').removeClass('current');
-				jQuery(this).addClass('current');
-				return false;
-			});	
-		}
-	}
+            // Change active element class
+            filter.find('a').on('click', function () {
+                filter.find('a').removeClass('current');
+                jQuery(this).addClass('current');
+                return false;
+            });
+        }
+    }
 }
+
+
 
 // -------------------------------------------------
 // -------------  PROGRESS BAR  --------------------

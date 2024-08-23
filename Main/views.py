@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import WebsiteDetail, WorkExperience
+from .models import WebsiteDetail, WorkExperience, AcademicsFilter, Academic
 from django.core.mail import send_mail
 from django.conf import settings
 
@@ -9,6 +9,8 @@ def index(request):
 
     website = WebsiteDetail.objects.get(linked_by="Website Details")
     workexp = WorkExperience.objects.all()
+    academics_filter = AcademicsFilter.objects.all()
+    academics = Academic.objects.all()
 
     if request.method == 'POST':
         name = request.POST.get('contact_name', '')
@@ -28,5 +30,4 @@ def index(request):
         except Exception as e:
             error_message = f'An error occurred while sending the email: {str(e)}'
             return render(request, 'index.html', {"website":website, 'workexp':workexp, "error_msg":error_message})
-
-    return render(request, 'index.html', {'website':website, 'workexp':workexp})
+    return render(request, 'index.html', {'website':website, 'workexp':workexp, 'academics_filter':academics_filter, "academics":academics})
