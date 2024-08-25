@@ -18,6 +18,7 @@ jQuery(document).ready(function(){
 	tramp_tm_modalbox_portfolio();
 	tramp_tm_progress();
 	tramp_tm_portfolio();
+	tramp_tm_news();
 	tramp_tm_cursor();
 	tramp_tm_imgtosvg();
 	tramp_tm_popup();
@@ -248,6 +249,51 @@ function tramp_tm_portfolio() {
     }
 }
 
+function tramp_tm_news() {
+    "use strict";
+
+    if (jQuery().isotope) {
+        // Needed variables
+        var list = jQuery('.tramp_tm_news .news_item');
+        var filter = jQuery('.tramp_tm_news .news_filter ul');
+
+        if (filter.length) {
+            // Find the current filter link
+            var currentFilter = filter.find('a.current').attr('data-filter') || '*';
+
+            // Initialize Isotope with the default filter
+            list.isotope({
+                filter: currentFilter,
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false
+                }
+            });
+
+            // Isotope Filter
+            filter.find('a').on('click', function () {
+                var selector = jQuery(this).attr('data-filter');
+                list.isotope({
+                    filter: selector,
+                    animationOptions: {
+                        duration: 750,
+                        easing: 'linear',
+                        queue: false
+                    }
+                });
+                return false;
+            });
+
+            // Change active element class
+            filter.find('a').on('click', function () {
+                filter.find('a').removeClass('current');
+                jQuery(this).addClass('current');
+                return false;
+            });
+        }
+    }
+}
 
 
 // -------------------------------------------------
