@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -20,6 +21,31 @@ class WorkExperience(models.Model):
     title = models.CharField(max_length=125)
     description = models.TextField()
     duration = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.title
+    
+
+class AcademicsFilter(models.Model):
+
+    category = models.CharField(max_length=125)
+    slug = models.SlugField(max_length=150, blank=True, null=True, default="slug")
+
+    def __str__(self):
+        return self.category
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.category)
+        super().save(*args, **kwargs)
+    
+
+class Academic(models.Model):
+
+    title = models.CharField(max_length=250)
+    sub_title = models.CharField(max_length=250)
+    description = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='pics/')
+    filter_category = models.ForeignKey(AcademicsFilter, on_delete=models.CASCADE, related_name='academics')
 
     def __str__(self):
         return self.title
