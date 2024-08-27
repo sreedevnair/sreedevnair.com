@@ -49,3 +49,29 @@ class Academic(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+
+class ProjectFilter(models.Model):
+
+    topic = models.CharField(max_length=125)
+    slug = models.SlugField(max_length=150, blank=True, null=True)
+
+    def __str__(self):
+        return self.topic
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.topic)
+        super().save(*args, **kwargs)
+
+
+class Project(models.Model):
+
+    title = models.CharField(max_length=250)
+    sub_title = models.CharField(max_length=250)
+    description = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='pics/', blank=True, null=True)
+    filter_category = models.ForeignKey(ProjectFilter, on_delete=models.CASCADE, related_name='projects')
+
+    def __str__(self):
+        return self.title
