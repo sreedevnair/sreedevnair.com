@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="tramp_tm_portfolio">
+      <div class="tramp_tm_title">
+        <h3><span>Academic Achievements</span></h3>
+      </div>
+      <div class="portfolio_filter">
+        <ul>
+          {% for filter in academics_filter %}
+          <li>
+              <a href="#" {% if forloop.first %} class="current" {% endif %} data-filter=".{{ filter.slug }}">
+                {{ filter.category }}
+              </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="portfolio_list">
+        <ul class="portfolio_item">
+
+          {% for academic in academics %}
+          <li class="{{academic.filter_category.slug}}">
+            <div class="list_inner">
+              <div class="abs_image">
+                <a class="portfolio_popup"  href="#"><img src="{{academic.image.url}}" alt="{{academic.title}}" />
+                <div
+                  class="main"
+                  data-img-url="{{academic.image.url}}"
+                ></div>
+                </a>
+              </div>
+              <div class="details">
+                <span class="category"><a class="portfolio_popup" href="#">{{academic.sub_title}}</a></span>
+                <h3 class="title">
+                  <a class="portfolio_popup" href="#"
+                    >{{academic.title}}</a
+                  >
+                </h3>
+              </div>
+
+              <div class="hidden_content_portfolio">
+                <div class="popup_details">
+                  <div class="textbox">
+                    <p>{{academic.description | safe}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+          
+        </ul>
+      </div>
+    </div>
+  </div>

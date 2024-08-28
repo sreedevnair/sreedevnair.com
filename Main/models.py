@@ -1,13 +1,12 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 
 # Create your models here.
 
 class WebsiteDetail(models.Model):
 
-    first_name = models.CharField(max_length=12)
-    second_name = models.CharField(max_length=12)
-    about_me = models.TextField()
+    about_me = RichTextField(null=True, blank=True)
     profile_picture = models.ImageField(upload_to='pics/')
 
     linked_by = models.CharField(max_length=15)
@@ -19,7 +18,7 @@ class WebsiteDetail(models.Model):
 class WorkExperience(models.Model):
 
     title = models.CharField(max_length=125)
-    description = models.TextField()
+    description = RichTextField(null=True, blank=True)
     duration = models.CharField(max_length=50)
 
     def __str__(self):
@@ -43,8 +42,9 @@ class Academic(models.Model):
 
     title = models.CharField(max_length=250)
     sub_title = models.CharField(max_length=250)
-    description = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to='pics/')
+    description = RichTextField(null=True, blank=True)
+    image = models.ImageField(upload_to='pics/academics')
+    priority = models.IntegerField(null=True, blank=True)
     filter_category = models.ForeignKey(AcademicsFilter, on_delete=models.CASCADE, related_name='academics')
 
     def __str__(self):
@@ -69,7 +69,7 @@ class Project(models.Model):
 
     title = models.CharField(max_length=250)
     sub_title = models.CharField(max_length=250)
-    description = models.TextField(blank=True, null=True)
+    description = RichTextField(null=True, blank=True)
     image = models.ImageField(upload_to='pics/', blank=True, null=True)
     filter_category = models.ForeignKey(ProjectFilter, on_delete=models.CASCADE, related_name='projects')
 

@@ -10,7 +10,9 @@ def index(request):
     website = WebsiteDetail.objects.get(linked_by="Website Details")
     workexp = WorkExperience.objects.all()
     academics_filter = AcademicsFilter.objects.all()
-    academics = Academic.objects.all()
+    academics = Academic.objects.all().order_by("-priority")
+    for i in academics:
+        print(i)
     projectfilers = ProjectFilter.objects.all()
     projects = Project.objects.all()
 

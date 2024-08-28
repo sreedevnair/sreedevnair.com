@@ -128,29 +128,7 @@
 
           <!------------- Home Page Content ----------------->
           <div id="home" class="tramp_tm_section animated">
-            <div class="container">
-              <div class="tramp_tm_home">
-                <div class="left">
-                  <div class="box">
-                    <div class="abs_image">
-                      <img src="{{ website.profile_picture.url }}" alt />
-                      <div class="main" data-img-url="{{ website.profile_picture.url }}"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="right">
-                  <div class="name">
-                    <h3><span class="stroke_text">{{website.first_name}}</span> {{website.second_name}}</h3>
-                  </div>
-                  <div class="text">
-                    <p>{{website.about_me}}</p>
-                  </div>
-                  <div class="tramp_tm_button transition_link">
-                    <a class="tm_text_effect" href="#contact">Get in Touch</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {% include 'home.html' %}
           </div>
 
           <!------------- About Me Content ----------------->
@@ -625,7 +603,10 @@
                 <div class="tramp_tm_title">
                   <h3><span>Porfolio Projects</span></h3>
                 </div>
-        
+
+                <img src="https://github-readme-stats.vercel.app/api?username=sreedevnair&show_icons=true" alt="GitHub stats">
+
+
                 <div class="news_filter">
                   <ul>
                     {% for topic in projectfilters %}
@@ -678,6 +659,7 @@
                     {% endfor %}
                   </ul>
                 </div>
+
         
               </div>
             </div>
@@ -685,218 +667,12 @@
 
           <!------------- Academics Content ----------------->
           <div id="academics" class="tramp_tm_section">
-            <div class="container">
-              <div class="tramp_tm_portfolio">
-                <div class="tramp_tm_title">
-                  <h3><span>Academic Achievements</span></h3>
-                </div>
-                <div class="portfolio_filter">
-                  <ul>
-                    {% for filter in academics_filter %}
-                    <li>
-                        <a href="#" {% if forloop.first %} class="current" {% endif %} data-filter=".{{ filter.slug }}">
-                          {{ filter.category }}
-                        </a>
-                    </li>
-                    {% endfor %}
-                  </ul>
-                </div>
-          
-                <div class="portfolio_list">
-                  <ul class="portfolio_item">
-          
-                    {% for academic in academics %}
-                    <li class="{{academic.filter_category.slug}}">
-                      <div class="list_inner">
-                        <div class="abs_image">
-                          <img src="{{academic.image.url}}" alt="{{academic.title}}" />
-                          <div
-                            class="main"
-                            data-img-url="{{academic.image.url}}"
-                          ></div>
-                        </div>
-                        <div class="details">
-                          <span class="category"><a href="#">{{academic.sub_title}}</a></span>
-                          <h3 class="title">
-                            <a class="portfolio_popup" href="#"
-                              >{{academic.title}}</a
-                            >
-                          </h3>
-                        </div>
-          
-                        {% if academic.description %}
-                        <div class="hidden_content_portfolio">
-                          <div class="popup_details">
-                            <div class="textbox">
-                              <p>{{academic.description}}</p>
-                            </div>
-                          </div>
-                        </div>
-                        {% endif %}
-                      </div>
-                    </li>
-                    {% endfor %}
-                    
-                  </ul>
-                </div>
-              </div>
-            </div>
+            {% include 'academics.html' %}
           </div>
 
           <!------------- Contact Section ----------------->
           <div id="contact" class="tramp_tm_section">
-            <div class="container">
-              <div class="tramp_tm_contact">
-                <div class="tramp_tm_title">
-                  <h3>
-                    <span>Get in Touch</span>
-                  </h3>
-                </div>
-
-                <!-- Adress Phone and Email ID-->
-                <div class="infolist">
-                  <ul>
-                    <li>
-                      <div class="list_inner">
-                        <span>Address</span>
-                        <span>Navi Mumbai, India</span>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="list_inner">
-                        <span>Phone</span>
-                        <span
-                          ><a class="line_effect" href="tel:+918850612106"
-                            >+91 88506 12106</a
-                          ></span
-                        >
-                      </div>
-                    </li>
-                    <li>
-                      <div class="list_inner">
-                        <span>Mail</span>
-                        <span>
-                          <a class="line_effect" href="mailto:contact@sreedevnair.com">contact@sreedevnair.com</a>
-                        </span>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-
-                <!-- Contact Form -->
-                {% if success_message %}
-                <span style="text-align: center;">
-                  <h2>{{success_message}}</h2>
-                </span>
-                <div class="my_map">
-                  <div class="mapouter">
-                    <div class="gmap_canvas">
-                      <iframe
-                        width="100%"
-                        height="392"
-                        id="gmap_canvas"
-                        src="https://maps.google.com/maps?q=Broadway,%20New%20York&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
-                        frameborder="0"
-                        scrolling="no"
-                        marginheight="0"
-                        marginwidth="0"
-                      ></iframe
-                      ><a href="https://123movies-i.net/"></a><br />
-                      <style>
-                        .mapouter {
-                          position: relative;
-                          text-align: right;
-                          height: 392px;
-                          width: 100%;
-                        }
-                      </style>
-                      <style>
-                        .gmap_canvas {
-                          overflow: hidden;
-                          background: none !important;
-                          height: 392px;
-                          width: 100%;
-                        }
-                      </style>
-                    </div>
-                  </div>
-                </div>
-
-                {% elif error_msg %}
-                <span style="text-align: center;">
-                  <h2>{{error_msg}}</h2>
-                </span>
-
-                {% else %}
-                <div class="form_wrapper">
-                  <form id="contactForm" action="{% url 'index' %}" method="post">
-                    {% csrf_token %}
-
-                    <!-- Input Fields -->
-                    <ul>
-                      <li>
-                        <input
-                          type="text"
-                          placeholder="Name"
-                          name="contact_name"
-                          required
-                        />
-                        <span></span>
-                      </li>
-                      <li>
-                        <input
-                          type="email"
-                          placeholder="Email"
-                          name="contact_email"
-                          required
-                        />
-                        <span></span>
-                      </li>
-                      <li id="text-area-w">
-                        <textarea
-                          placeholder="Message"
-                          name="contact_message"
-                          required
-                        ></textarea>
-                      </li>
-                    </ul>
-                    
-                    <div class="tramp_tm_button">
-                      <a id="send_message" class="tm_text_effect" href="#">Send Message</a>
-                    </div>
-
-                    <script>
-                      document.addEventListener("DOMContentLoaded", function() {
-                          document.getElementById("send_message").addEventListener("click", function(event) {
-                              event.preventDefault(); // Prevent the default anchor behavior
-                              
-                              // Get the form element
-                              var form = document.getElementById("contactForm");
-                      
-                              // Check if the form is valid
-                              if (form.checkValidity()) {
-                                  form.submit(); // Submit the form if valid
-                              } else {
-                                  form.reportValidity(); // Trigger validation UI if invalid
-                              }
-                          });
-                      });
-                    </script>
-
-                  </form>
-                </div>
-
-                {% endif %}
-              
-              <script>
-                  document.getElementById('contactForm').addEventListener('submit', function(e) {
-                      // Save the "Contact" section before the form is submitted
-                      localStorage.setItem('currentSection', 'contact');
-                  });
-              </script>
-              
-              </div>
-            </div>
+            {% include 'contact.html' %}
           </div>
         </div>
       </div>
