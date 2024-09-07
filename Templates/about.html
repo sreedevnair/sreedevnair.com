@@ -1,0 +1,133 @@
+{% load static %}
+
+<div class="container">
+    <div class="tramp_tm_about">
+      <div class="biography">
+        <div class="tramp_tm_title">
+          <h3><span>Biography</span></h3>
+        </div>
+        <div class="text">
+          {{website.biography | safe}}
+        </div>
+        <div class="tramp_tm_button">
+          <a class="tm_text_effect" href="{{website.my_resume.url}}" download
+            >Download CV</a
+          >
+        </div>
+      </div>
+      
+      <!-- Skill Sets -->
+      <div class="personal_details">
+        <div class="tramp_tm_flexbox">
+
+          <div class="leftbox">
+
+            <div class="tramp_tm_title">
+              <h3><span>Technical Skills</span></h3>
+            </div>
+            <div class="tramp_progress">
+                <div class="progress_inner" data-value="85">
+                  <span>
+                    <span class="label">Python</span>
+                    <span class="number">85%</span>
+                </span>
+                  <div class="background">
+                    <div class="bar">
+                      <div class="bar_in"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="progress_inner" data-value="50">
+                  <span>
+                    <span class="label">R</span>
+                    <span class="number">50%</span>
+                  </span>
+                  <div class="background">
+                    <div class="bar">
+                      <div class="bar_in"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="progress_inner" data-value="60">
+                    <span>
+                      <span class="label">Tableau</span>
+                      <span class="number">60%</span>
+                    </span>
+                    <div class="background">
+                      <div class="bar">
+                        <div class="bar_in"></div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="progress_inner" data-value="30">
+                    <span>
+                      <span class="label">C++</span>
+                      <span class="number">30%</span>
+                    </span>
+                    <div class="background">
+                      <div class="bar">
+                        <div class="bar_in"></div>
+                      </div>
+                    </div>
+                </div>
+
+              </div>
+          </div>
+
+          <div class="rightbox">
+            <div class="tramp_tm_title">
+              <h3><span>ML and Deep Learning</span></h3>
+            </div>
+            <div class="tramp_progress">
+
+              {% for skill in skills %}
+              <div class="progress_inner" data-value="{{skill.percentage}}">
+                <span
+                  ><span class="label">{{skill.skill}}</span
+                  ><span class="number">{{skill.percentage}}%</span></span
+                >
+                <div class="background">
+                  <div class="bar">
+                    <div class="bar_in"></div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Work Experience -->
+      <div class="tramp_tm_timeline" style="margin-bottom: 0%;">
+        <div class="tramp_tm_title">
+          <h3><span>Working Experience</span></h3>
+        </div>
+        <div class="list">
+          <ul>
+            {% for exp in workexp %}
+            <li>
+              <div class="list_inner">
+                <div class="occ">
+                  <h3>{{exp.title}}</h3>
+                  <hp>{{exp.sub_title}}</p>
+                </div>
+                <div class="text">
+                  {{exp.description | safe}}
+                </div>
+                <div class="date">
+                  <span>{{exp.duration | safe}}</span>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

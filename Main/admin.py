@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import WebsiteDetail, WorkExperience, AcademicsFilter, Academic, ProjectFilter, Project
+from .models import WebsiteDetail, WorkExperience, AcademicsFilter, Academic, ProjectFilter, Project, Skill
 
 # Register your models here.
 admin.site.register(WebsiteDetail)
@@ -8,3 +8,4 @@ admin.site.register(AcademicsFilter)
 admin.site.register(Academic)
 admin.site.register(ProjectFilter)
 admin.site.register(Project)
+admin.site.register(Skill)

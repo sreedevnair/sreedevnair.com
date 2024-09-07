@@ -9,6 +9,9 @@ class WebsiteDetail(models.Model):
     about_me = RichTextField(null=True, blank=True)
     profile_picture = models.ImageField(upload_to='pics/')
 
+    biography = RichTextField()
+    my_resume = models.FileField(upload_to='resume/')
+
     linked_by = models.CharField(max_length=15)
 
     def __str__(self):
@@ -18,6 +21,7 @@ class WebsiteDetail(models.Model):
 class WorkExperience(models.Model):
 
     title = models.CharField(max_length=125)
+    sub_title = models.CharField(max_length=125)
     description = RichTextField(null=True, blank=True)
     duration = models.CharField(max_length=50)
 
@@ -75,3 +79,12 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class Skill(models.Model):
+
+    skill = models.CharField(max_length=100)
+    percentage = models.IntegerField()
+
+    def __str__(self):
+        return self.skill
