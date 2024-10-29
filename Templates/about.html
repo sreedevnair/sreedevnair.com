@@ -4,14 +4,14 @@
     <div class="tramp_tm_about">
       <div class="biography">
         <div class="tramp_tm_title">
-          <h3><span>Biography</span></h3>
+          <h3><span>About Me</span></h3>
         </div>
         <div class="text">
           {{website.biography | safe}}
         </div>
         <div class="tramp_tm_button">
           <a class="tm_text_effect" href="{{website.my_resume.url}}" download
-            >Download CV</a
+            >Download My Resume</a
           >
         </div>
       </div>
@@ -26,10 +26,11 @@
               <h3><span>Technical Skills</span></h3>
             </div>
             <div class="tramp_progress">
-                <div class="progress_inner" data-value="85">
+              {% for skill in technical_skills %}
+                <div class="progress_inner" data-value="{{skill.percentage}}">
                   <span>
-                    <span class="label">Python</span>
-                    <span class="number">85%</span>
+                    <span class="label">{{skill.technical_skill}}</span>
+                    <span class="number">{{skill.percentage}}%</span>
                 </span>
                   <div class="background">
                     <div class="bar">
@@ -37,42 +38,7 @@
                     </div>
                   </div>
                 </div>
-
-                <div class="progress_inner" data-value="50">
-                  <span>
-                    <span class="label">R</span>
-                    <span class="number">50%</span>
-                  </span>
-                  <div class="background">
-                    <div class="bar">
-                      <div class="bar_in"></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="progress_inner" data-value="60">
-                    <span>
-                      <span class="label">Tableau</span>
-                      <span class="number">60%</span>
-                    </span>
-                    <div class="background">
-                      <div class="bar">
-                        <div class="bar_in"></div>
-                      </div>
-                    </div>
-                </div>
-
-                <div class="progress_inner" data-value="30">
-                    <span>
-                      <span class="label">C++</span>
-                      <span class="number">30%</span>
-                    </span>
-                    <div class="background">
-                      <div class="bar">
-                        <div class="bar_in"></div>
-                      </div>
-                    </div>
-                </div>
+              {% endfor %}
 
               </div>
           </div>

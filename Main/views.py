@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import WebsiteDetail, WorkExperience, AcademicsFilter, Academic, ProjectFilter, Project, Skill
+from .models import WebsiteDetail, WorkExperience, AcademicsFilter, Academic, ProjectFilter, Project, Skill, TechnicalSkill
 from django.core.mail import send_mail
 from django.conf import settings
 
@@ -8,12 +8,16 @@ from django.conf import settings
 def index(request):
 
     website = WebsiteDetail.objects.get(linked_by="Website Details")
-    workexp = WorkExperience.objects.all()
-    academics_filter = AcademicsFilter.objects.all()
-    academics = Academic.objects.all().order_by("-priority")
+
+    technical_skills = TechnicalSkill.objects.all().order_by("-priority")
+    skills = Skill.objects.all().order_by("-priority")
+    workexp = WorkExperience.objects.all().order_by("-priority")
+
     projectfilers = ProjectFilter.objects.all()
     projects = Project.objects.all()
-    skills = Skill.objects.all()
+    
+    academics_filter = AcademicsFilter.objects.all()
+    academics = Academic.objects.all().order_by("-priority")
 
     if request.method == 'POST':
         name = request.POST.get('contact_name', '')
@@ -35,4 +39,4 @@ def index(request):
             return render(request, 'index.html', {"website":website, 'workexp':workexp, "error_msg":error_message})
         
     return render(request, 'index.html', {'website':website, 'workexp':workexp, 'academics_filter':academics_filter, "academics":academics, 
-                                          'projectfilters':projectfilers, 'projects':projects, 'skills':skills})
+                                          'projectfilters':projectfilers, 'projects':projects, 'skills':skills, 'technical_skills':technical_skills})

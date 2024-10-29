@@ -24,6 +24,7 @@ class WorkExperience(models.Model):
     sub_title = models.CharField(max_length=125)
     description = RichTextField(null=True, blank=True)
     duration = models.CharField(max_length=50)
+    priority  = models.IntegerField()
 
     def __str__(self):
         return self.title
@@ -85,6 +86,18 @@ class Skill(models.Model):
 
     skill = models.CharField(max_length=100)
     percentage = models.IntegerField()
+    priority = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.skill
+    
+
+
+class TechnicalSkill(models.Model):
+
+    technical_skill = models.CharField(max_length=100)
+    percentage = models.IntegerField()
+    priority = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return self.technical_skill

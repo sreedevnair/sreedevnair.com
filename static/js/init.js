@@ -152,12 +152,11 @@ function tramp_tm_modalbox_news(){
 		var element 	= jQuery(this);
 		var parent 		= element.closest('li');
 		var content 	= parent.find('.news_hidden_details').html();
-		var image		= parent.find('.news_image').attr('src');
 		var meta		= parent.find('.tramp_tm_metabox').html();
 		var title		= parent.find('.title a').text();
 		modalBox.addClass('opened');
 		modalBox.find('.description_wrap').html(content);
-		modalBox.find('.news_popup_informations').prepend('<div class="image"><img src="img/thumbs/4-2.jpg" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
+		modalBox.find('.news_popup_informations').prepend('<div class="image"><img src="' + image + '" alt="" /><div class="main" data-img-url="'+image+'"></div></div>');
 		modalBox.find('.news_popup_informations .image').after('<div class="details_news"><div class="tramp_tm_metabox">'+meta+'</div><div class="title"><h3>'+title+'</h3></div></div>');
 		tramp_tm_data_images();
 		return false;
